@@ -130,18 +130,13 @@ function DBexec($handler, $sql) {
 
 // --------------- PIN functions ---------------
 
-function togglePin($output_id, $new_status) {
-	
-	// get relay pin for the output
-	$relay_pin = $outputs[$output_id]["relayPin"];
+function togglePin($relay_pin, $new_status) {
 	
 	// set the pin direction as OUT
-	$output = shell_exec("/usr/bin/gpio -g mode $relay_pin out");
-	logMessage("gpio mode command: /usr/bin/gpio -g mode $relay_pin out - $output");
+	exec("/usr/bin/gpio mode $relay_pin out");
 	
 	// toggle pin status
-	$output = shell_exec("/usr/bin/gpio -g write $relay_pin $new_status");
-	logMessage("gpio write command: /usr/bin/gpio -g write $relay_pin $new_status - $output");
+	exec("/usr/bin/gpio -g write $relay_pin $new_status");
 	
 	return "OK";
 }

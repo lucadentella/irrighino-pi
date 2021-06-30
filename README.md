@@ -24,5 +24,6 @@ sudo chmod -R o+w /var/www/html/irrighino-pi/db/
 sudo mkdir /var/www/html/irrighino-pi/logs
 sudo chmod o+w /var/www/html/irrighino-pi/logs
 sudo usermod -a -G www-data pi
+sudo usermod -a -G gpio www-data
 
 // modifica in 664 il log quando lo crei da zero
