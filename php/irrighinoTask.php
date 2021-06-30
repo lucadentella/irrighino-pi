@@ -35,7 +35,7 @@
 				// if the output is OFF, turn it ON
 				if($out_status == STATUS_OFF) {
 
-					$response = callArduino("on/$out_id");
+					$response = togglePin($outputs[$out_id]["relayPin"], 1);
 					if(strpos($response, "OK") !== false) {
 						$sql = "UPDATE OUTPUTS SET OUT_STATUS = " . STATUS_ON . " WHERE OUT_ID = $out_id";
 						DBexec($db_handler, $sql);
@@ -59,7 +59,7 @@
 				// if the output is ON, turn it OFF
 				if($out_status == STATUS_ON) {
 
-					$response = callArduino("off/$out_id");
+					$response = togglePin($outputs[$out_id]["relayPin"], 0);
 					if(strpos($response, "OK") !== false) {
 						$sql = "UPDATE OUTPUTS SET OUT_STATUS = " . STATUS_OFF . " WHERE OUT_ID = $out_id";
 						DBexec($db_handler, $sql);					
