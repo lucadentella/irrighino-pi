@@ -136,7 +136,7 @@ function togglePin($relay_pin, $new_status) {
 	exec("/usr/bin/gpio mode $relay_pin out");
 	
 	// toggle pin status
-	exec("/usr/bin/gpio -g write $relay_pin $new_status");
+	exec("/usr/bin/gpio write $relay_pin $new_status");
 	
 	return "OK";
 }
