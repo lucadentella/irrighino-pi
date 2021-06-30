@@ -37,7 +37,7 @@ define("RAINSENSOR_PIN", 20);
 // --------------- Timestamp and logging configuration ---------------
 
 date_default_timezone_set("Europe/Rome");
-define("LOG_DIR", "./logs/");
+define("LOG_DIR", "/var/www/html/irrighino-pi/logs/");
 define("RETENTION_DAYS", 7);
 
 
