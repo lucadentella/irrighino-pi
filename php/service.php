@@ -215,7 +215,7 @@
 					
 					// new status OFF
 					if($status_id == 0) {
-						$response = callArduino("off/$$output_id");
+						$response = togglePin($output_id, 0);
 						if(strpos($response, "OK") !== false) {
 							
 							// change the output status and managed by in the DB
@@ -239,7 +239,7 @@
 					
 					// new status ON
 					else if($status_id == 2) {
-						$response = callArduino("on/$$output_id");
+						$response = togglePin($output_id, 1);
 						if(strpos($response, "OK") !== false) {
 							
 							// change the output status and managed by in the DB

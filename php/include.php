@@ -127,4 +127,20 @@ function DBexec($handler, $sql) {
 	if($handler == false) return false;
 	return $handler->exec($sql);
 }
+
+// --------------- PIN functions ---------------
+
+function togglePin($output_id, $new_status) {
+	
+	// get relay pin for the output
+	$relay_pin = $outputs[$output_id]['relayPin'];
+	
+	// set the pin direction as OUT
+	shell_exec("/usr/local/bin/gpio -g mode $relay_pin out");
+	
+	// toggle pin status
+	shell_exec("/usr/local/bin/gpio -g write $relay_pin $new_status");
+	
+	return "OK";
+}
 ?>
