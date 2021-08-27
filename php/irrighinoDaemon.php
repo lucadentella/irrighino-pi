@@ -4,7 +4,7 @@ require('include.php');
 logMessage("IrrighinoDaemon - Started");
 
 // loop
-for ($count = 0; $count < 15; $count++) {
+for ($count = 0; $count < 25; $count++) {
 	
 	// open DB connection
 	$db_handler  = DBconnect();
