@@ -11,4 +11,7 @@ for (;;) {
 		if(isSwitchOn($outputs[$i]["manualOnPin"])) print("manual ON");
 		else if(isSwitchOn($outputs[$i]["manualOffPin"])) print("manual OFF");
 	}
+	
+	// sleep for 10 sec
+	sleep(10);
 }
