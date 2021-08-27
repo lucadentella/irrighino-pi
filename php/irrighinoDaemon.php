@@ -25,7 +25,6 @@ for (;;) {
 				$response = togglePin($outputs[$i]["relayPin"], 1);
 				if(strpos($response, "OK") !== false) {
 					$sql = "UPDATE OUTPUTS SET OUT_STATUS = " . STATUS_ON . " WHERE OUT_ID = $i";
-					print("sql = $sql");
 					DBexec($db_handler, $sql);
 					logEvent($db_handler, TYPE_OUT_ON, "Output $i turned ON by switch");
 				}
@@ -36,12 +35,10 @@ for (;;) {
 			$data_set = DBquery($db_handler, $sql);
 			$row = $data_set->fetch();
 			$managed_by = intval($row['MANAGED_BY']);
-			print("managed by = $managed_by");
 
 			// if not, update the DB
 			if($managed_by != MANAGED_BY_SWITCH) {
 				$sql = "UPDATE OUTPUTS SET MANAGED_BY = " . MANAGED_BY_SWITCH . " WHERE OUT_ID = $i";
-				print("sql = $sql");
 				DBexec($db_handler, $sql);
 				logEvent($db_handler, TYPE_CFG_CHANGE, "Output $i set managed by switch");
 			}					
