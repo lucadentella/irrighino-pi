@@ -3,7 +3,7 @@
 require('include.php');
 
 // infinite loop
-for (;;) {
+for ($count = 0; $count < 15; $count++) {
 	
 	// open DB connection
 	$db_handler  = DBconnect();
