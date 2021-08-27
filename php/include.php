@@ -142,6 +142,7 @@ function togglePin($relay_pin, $led_pin, $new_status) {
 	
 	// set the pin direction as OUT
 	exec("/usr/bin/gpio mode $relay_pin out");
+	exec("/usr/bin/gpio mode $led_pin out");
 	
 	// toggle pin status
 	exec("/usr/bin/gpio write $relay_pin $new_status");
