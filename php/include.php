@@ -10,6 +10,8 @@ $outputs[0]["baseColor"] = "#FFD800";
 $outputs[0]["borderColor"] = "#E5BF00";
 $outputs[0]["relayPin"] = 21;
 $outputs[0]["switchPin"] = 25;
+$outputs[0]["manualOnPin"] = 28;
+$outputs[0]["manualOffPin"] = 29;
 
 $outputs[1]["name"] = "Left";
 $outputs[1]["baseColor"] = "#FF0000";
@@ -139,5 +141,18 @@ function togglePin($relay_pin, $new_status) {
 	exec("/usr/bin/gpio write $relay_pin $new_status");
 	
 	return "OK";
+}
+
+function isSwitchOn($switchPin) {
+	
+	// set the pin direction as INPUT
+	exec("/usr/bin/gpio mode $relay_pin input");
+	
+	// get pin status
+	$output = null;
+	exec("/usr/bin/gpio read $relay_pin", $output);
+	
+	if($output[0] == "0") return true;
+	else return false;
 }
 ?>

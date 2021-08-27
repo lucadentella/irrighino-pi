@@ -6,9 +6,9 @@ require('include.php');
 for (;;) {
 	
 	// check the switch status
+	for($i = 0; $i < 1; $i++) {
 	
-	// every minute, check for events in the DB
-	
-	
-	
+		if(isSwitchOn($outputs[$i]["manualOnPin"])) print("manual ON");
+		else if(isSwitchOn($outputs[$i]["manualOffPin"])) print("manual OFF");
+	}
 }
