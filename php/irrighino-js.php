@@ -225,7 +225,10 @@ function updateGUI() {
 				noFireEvent = true;
 				
 				// managed_by AUTO
-				if(result.managed_by == 2) $("#slider<?php echo $i ?>").slider( "value", 1);
+				if(result.managed_by == 2) {
+					$("#slider<?php echo $i ?>").slider( "value", 1);
+					$("#slider<?php echo $i ?>").slider("option", "disabled", false);
+				}
 								
 				// managed by WEB or SWITCH, configure the actual status
 				else {
