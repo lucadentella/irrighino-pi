@@ -22,7 +22,7 @@ for ($count = 0; $count < 15; $count++) {
 			
 			// if not, turn it ON and update the DB
 			if($out_status == STATUS_OFF) {
-				$response = togglePin($outputs[$i]["relayPin"], 1);
+				$response = togglePin($outputs[$i]["relayPin"], $outputs[$i]["ledPin"], 1);
 				if(strpos($response, "OK") !== false) {
 					$sql = "UPDATE OUTPUTS SET OUT_STATUS = " . STATUS_ON . " WHERE OUT_ID = $i";
 					DBexec($db_handler, $sql);
@@ -55,7 +55,7 @@ for ($count = 0; $count < 15; $count++) {
 			
 			// if not, turn it ON and update the DB
 			if($out_status == STATUS_ON) {
-				$response = togglePin($outputs[$i]["relayPin"], 0);
+				$response = togglePin($outputs[$i]["relayPin"], $outputs[$i]["ledPin"], 0);
 				if(strpos($response, "OK") !== false) {
 					$sql = "UPDATE OUTPUTS SET OUT_STATUS = " . STATUS_OFF . " WHERE OUT_ID = $i";
 					DBexec($db_handler, $sql);

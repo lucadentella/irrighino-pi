@@ -138,13 +138,14 @@ function DBexec($handler, $sql) {
 
 // --------------- PIN functions ---------------
 
-function togglePin($relay_pin, $new_status) {
+function togglePin($relay_pin, $led_pin, $new_status) {
 	
 	// set the pin direction as OUT
 	exec("/usr/bin/gpio mode $relay_pin out");
 	
 	// toggle pin status
 	exec("/usr/bin/gpio write $relay_pin $new_status");
+	exec("/usr/bin/gpio write $led_pin $new_status");
 	
 	return "OK";
 }
