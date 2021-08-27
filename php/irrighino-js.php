@@ -110,9 +110,9 @@ function init() {
 		}
 	});
 
-	// auto-update the GUI every 15 seconds
+	// auto-update the GUI every 5 seconds
 	updateGUI();
-	setInterval(updateGUI, 15000);
+	setInterval(updateGUI, 5000);
 }
 
 function initWeekCalendar() {
@@ -234,6 +234,7 @@ function updateGUI() {
 					
 					// managed by SWITCH, disable the slider
 					if(result.managed_by == 0) $("#slider<?php echo $i ?>").slider("option", "disabled", true);
+					else $("#slider<?php echo $i ?>").slider("option", "disabled", false);
 				}
 			}});
 		
