@@ -143,14 +143,14 @@ function togglePin($relay_pin, $new_status) {
 	return "OK";
 }
 
-function isSwitchOn($switchPin) {
+function isSwitchOn($switch_pin) {
 	
 	// set the pin direction as INPUT
-	exec("/usr/bin/gpio mode $relay_pin input");
+	exec("/usr/bin/gpio mode $switch_pin input");
 	
 	// get pin status
 	$output = null;
-	exec("/usr/bin/gpio read $relay_pin", $output);
+	exec("/usr/bin/gpio read $switch_pin", $output);
 	
 	if($output[0] == "0") return true;
 	else return false;
