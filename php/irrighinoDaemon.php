@@ -19,6 +19,7 @@ for (;;) {
 			$data_set = DBquery($db_handler, $sql);
 			$row = $data_set[0];
 			$out_status = intval($row['OUT_STATUS']);
+			print("out status = $out_status");
 			
 			// if not, turn it ON and update the DB
 			if($out_status == STATUS_OFF) {
