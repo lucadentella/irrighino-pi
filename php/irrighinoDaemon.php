@@ -15,7 +15,7 @@ for (;;) {
 		if(isSwitchOn($outputs[$i]["manualOnPin"])) {
 		
 			// check if output is already ON
-			$sql = "SELECT OUT_ID, OUT_STATUS FROM OUTPUTS OUT_ID = $i";
+			$sql = "SELECT OUT_ID, OUT_STATUS FROM OUTPUTS WHERE OUT_ID = $i";
 			$data_set = DBquery($db_handler, $sql);
 			$row = $data_set->fetch();
 			print($row);
@@ -53,7 +53,7 @@ for (;;) {
 		else if(isSwitchOn($outputs[$i]["manualOffPin"])) {
 		
 			// check if output is already OFF
-			$sql = "SELECT OUT_ID, OUT_STATUS FROM OUTPUTS OUT_ID = $i";
+			$sql = "SELECT OUT_ID, OUT_STATUS FROM OUTPUTS WHERE OUT_ID = $i";
 			$data_set = DBquery($db_handler, $sql);
 			$row = $data_set[0];
 			$out_status = intval($row['OUT_STATUS']);
