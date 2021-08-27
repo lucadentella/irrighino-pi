@@ -18,9 +18,7 @@ for (;;) {
 			$sql = "SELECT OUT_ID, OUT_STATUS FROM OUTPUTS WHERE OUT_ID = $i";
 			$data_set = DBquery($db_handler, $sql);
 			$row = $data_set->fetch();
-			print($row);
 			$out_status = intval($row['OUT_STATUS']);
-			print("out status = $out_status");
 			
 			// if not, turn it ON and update the DB
 			if($out_status == STATUS_OFF) {
@@ -34,9 +32,9 @@ for (;;) {
 			}
 			
 			// check if output is already MANAGED BY SWITCH
-			$sql = "SELECT MANAGED_BY FROM OUTPUTS OUT_ID = $i";
+			$sql = "SELECT MANAGED_BY FROM OUTPUTS WHERE OUT_ID = $i";
 			$data_set = DBquery($db_handler, $sql);
-			$row = $data_set[0];
+			$row = $data_set->fetch();
 			$managed_by = intval($row['MANAGED_BY']);
 			print("managed by = $managed_by");
 
@@ -55,7 +53,7 @@ for (;;) {
 			// check if output is already OFF
 			$sql = "SELECT OUT_ID, OUT_STATUS FROM OUTPUTS WHERE OUT_ID = $i";
 			$data_set = DBquery($db_handler, $sql);
-			$row = $data_set[0];
+			$row = $data_set->fetch();
 			$out_status = intval($row['OUT_STATUS']);
 			
 			// if not, turn it ON and update the DB
@@ -69,9 +67,9 @@ for (;;) {
 			}
 			
 			// check if output is already MANAGED BY SWITCH
-			$sql = "SELECT MANAGED_BY FROM OUTPUTS OUT_ID = $i";
+			$sql = "SELECT MANAGED_BY FROM OUTPUTS WHERE OUT_ID = $i";
 			$data_set = DBquery($db_handler, $sql);
-			$row = $data_set[0];
+			$row = $data_set->fetch();
 			$managed_by = intval($row['MANAGED_BY']);
 
 			// if not, update the DB
@@ -86,9 +84,9 @@ for (;;) {
 		else {
 			
 			// check if output is already MANAGED BY AUTO
-			$sql = "SELECT MANAGED_BY FROM OUTPUTS OUT_ID = $i";
+			$sql = "SELECT MANAGED_BY FROM OUTPUTS WHERE OUT_ID = $i";
 			$data_set = DBquery($db_handler, $sql);
-			$row = $data_set[0];
+			$row = $data_set->fetch();
 			$managed_by = intval($row['MANAGED_BY']);
 
 			// if not, update the DB
