@@ -8,28 +8,34 @@ $outputs = array();
 $outputs[0]["name"] = "Front    ";
 $outputs[0]["baseColor"] = "#FFD800";
 $outputs[0]["borderColor"] = "#E5BF00";
-$outputs[0]["relayPin"] = 21;
-$outputs[0]["switchPin"] = 25;
-$outputs[0]["manualOnPin"] = 28;
-$outputs[0]["manualOffPin"] = 29;
+$outputs[0]["relayPin"] = 8;
+$outputs[0]["ledPin"] = 2;
+$outputs[0]["manualOnPin"] = 15;
+$outputs[0]["manualOffPin"] = 16;
 
 $outputs[1]["name"] = "Left";
 $outputs[1]["baseColor"] = "#FF0000";
 $outputs[1]["borderColor"] = "#E00000";
-$outputs[1]["relayPin"] = 22;
-$outputs[1]["switchPin"] = 26;
+$outputs[1]["relayPin"] = 9;
+$outputs[1]["ledPin"] = 3;
+$outputs[1]["manualOnPin"] = 1;
+$outputs[1]["manualOffPin"] = 4;
 
 $outputs[2]["name"] = "Right";
 $outputs[2]["baseColor"] = "#00FF21";
 $outputs[2]["borderColor"] = "#00E21A";
-$outputs[2]["relayPin"] = 23;
-$outputs[2]["switchPin"] = 27;
+$outputs[2]["relayPin"] = 7;
+$outputs[2]["ledPin"] = 12;
+$outputs[2]["manualOnPin"] = 5;
+$outputs[2]["manualOffPin"] = 6;
 
 $outputs[3]["name"] = "Rear";
 $outputs[3]["baseColor"] = "#005DFF";
 $outputs[3]["borderColor"] = "#0049C9";
-$outputs[3]["relayPin"] = 24;
-$outputs[3]["switchPin"] = 28;
+$outputs[3]["relayPin"] = 0;
+$outputs[3]["ledPin"] = 13;
+$outputs[3]["manualOnPin"] = 10;
+$outputs[3]["manualOffPin"] = 11;
 
 // --------------- Rain sensor configuration ---------------
 

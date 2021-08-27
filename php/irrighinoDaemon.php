@@ -9,7 +9,7 @@ for ($count = 0; $count < 15; $count++) {
 	$db_handler  = DBconnect();
 	
 	// check the switch status
-	for($i = 0; $i < 1; $i++) {
+	for($i = 0; $i < OUTPUTS_NUMBER; $i++) {
 	
 		// Manual ON
 		if(isSwitchOn($outputs[$i]["manualOnPin"])) {
