@@ -17,6 +17,7 @@ for (;;) {
 			// check if output is already ON
 			$sql = "SELECT OUT_ID, OUT_STATUS FROM OUTPUTS OUT_ID = $i";
 			$data_set = DBquery($db_handler, $sql);
+			$row = $data_set[0];
 			$out_status = intval($row['OUT_STATUS']);
 			
 			// if not, turn it ON and update the DB
@@ -32,6 +33,7 @@ for (;;) {
 			// check if output is already MANAGED BY SWITCH
 			$sql = "SELECT MANAGED_BY FROM OUTPUTS OUT_ID = $i";
 			$data_set = DBquery($db_handler, $sql);
+			$row = $data_set[0];
 			$managed_by = intval($row['MANAGED_BY']);
 
 			// if not, update the DB
@@ -48,6 +50,7 @@ for (;;) {
 			// check if output is already OFF
 			$sql = "SELECT OUT_ID, OUT_STATUS FROM OUTPUTS OUT_ID = $i";
 			$data_set = DBquery($db_handler, $sql);
+			$row = $data_set[0];
 			$out_status = intval($row['OUT_STATUS']);
 			
 			// if not, turn it ON and update the DB
@@ -63,6 +66,7 @@ for (;;) {
 			// check if output is already MANAGED BY SWITCH
 			$sql = "SELECT MANAGED_BY FROM OUTPUTS OUT_ID = $i";
 			$data_set = DBquery($db_handler, $sql);
+			$row = $data_set[0];
 			$managed_by = intval($row['MANAGED_BY']);
 
 			// if not, update the DB
@@ -79,6 +83,7 @@ for (;;) {
 			// check if output is already MANAGED BY AUTO
 			$sql = "SELECT MANAGED_BY FROM OUTPUTS OUT_ID = $i";
 			$data_set = DBquery($db_handler, $sql);
+			$row = $data_set[0];
 			$managed_by = intval($row['MANAGED_BY']);
 
 			// if not, update the DB
