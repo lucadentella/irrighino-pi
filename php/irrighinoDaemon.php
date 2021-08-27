@@ -17,7 +17,9 @@ for (;;) {
 			// check if output is already ON
 			$sql = "SELECT OUT_ID, OUT_STATUS FROM OUTPUTS OUT_ID = $i";
 			$data_set = DBquery($db_handler, $sql);
+			print_r($data_set);
 			$row = $data_set[0];
+			print_r($row);
 			$out_status = intval($row['OUT_STATUS']);
 			print("out status = $out_status");
 			
