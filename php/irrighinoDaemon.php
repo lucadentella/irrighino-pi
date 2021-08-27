@@ -1,8 +1,9 @@
 <?php
 
 require('include.php');
+logMessage("IrrighinoDaemon - Started");
 
-// infinite loop
+// loop
 for ($count = 0; $count < 15; $count++) {
 	
 	// open DB connection
@@ -101,3 +102,6 @@ for ($count = 0; $count < 15; $count++) {
 	// sleep for 2 sec
 	sleep(2);
 }
+
+logMessage("IrrighinoDaemon - Completed");
+?>
