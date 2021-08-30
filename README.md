@@ -1,24 +1,38 @@
+
 # irrighino-pi
+![](https://github.com/lucadentella/irrighino-pi/raw/main/images/logo-pi.png)
 
-Upgrade the raspbian distribution
-sudo apt update
-sudo apt upgrade
-reboot
+## Description
 
-Install nginx and PHP following the official guide:
-https://www.raspberrypi.org/documentation/remote-access/web-server/nginx.md
+Smart watering controller based on Raspberry Pi.
 
-Make sure you can see the phpinfo page:
+![](https://img.shields.io/badge/license-CC--BY--NC--SA-green)
 
-Install the required php modules:
-sudo apt-get install php-sqlite3 php-curl
+## Features :trophy:
 
-Install SQlite client
-sudo apt-get install sqlite3
+ - **Web-based** GUI
+ - **Weekly** calendar with **2 minutes** resolution
+ - **Manual** control of each valve (via GUI or physical switches)
 
-Install the WiringPi library to control GPIO pins
-sudo apt-get install wiringpi
+## How to install :notebook:
 
+**0. Upgrade the raspbian distribution**
+
+    sudo apt update
+    sudo apt upgrade
+    reboot
+
+**1. Install nginx and PHP** 
+- Follow the [official guide](https://www.raspberrypi.org/documentation/remote-access/web-server/nginx.md)
+- When complete, make sure you can see the phpinfo page:
+
+**2. Install the required libraries and modules**
+
+    sudo apt-get install php-sqlite3 php-curl
+    sudo apt-get install sqlite3
+    sudo apt-get install wiringpi
+
+**3. Clone the Github repository**
 
 sudo chmod -R o+w /var/www/html/irrighino-pi/db/
 sudo mkdir /var/www/html/irrighino-pi/logs
