@@ -177,6 +177,7 @@ function togglePin($relay_pin, $led_pin, $new_status) {
 	if($new_status == 1) {
 		$relay_pin_object->setValue(PinInterface::VALUE_HIGH);
 		$led_pin_object->setValue(PinInterface::VALUE_HIGH);
+	}
 	else {
 		$relay_pin_object->setValue(PinInterface::VALUE_LOW);
 		$led_pin_object->setValue(PinInterface::VALUE_LOW);		
