@@ -1,5 +1,23 @@
 <?php
 
+// --------------- Include PiPHP library ---------------
+
+require_once(__DIR__ ."/PiPHP/src/GPIOInterface.php");
+require_once(__DIR__ ."/PiPHP/src/GPIO.php");
+
+require_once(__DIR__ ."/PiPHP/src/FileSystem/FileSystemInterface.php");
+require_once(__DIR__ ."/PiPHP/src/FileSystem/FileSystem.php");
+
+require_once(__DIR__ ."/PiPHP/src/Pin/PinInterface.php");
+require_once(__DIR__ ."/PiPHP/src/Pin/InputPinInterface.php");
+require_once(__DIR__ ."/PiPHP/src/Pin/OutputPinInterface.php");
+require_once(__DIR__ ."/PiPHP/src/Pin/Pin.php");
+require_once(__DIR__ ."/PiPHP/src/Pin/InputPin.php");
+require_once(__DIR__ ."/PiPHP/src/Pin/OutputPin.php");
+
+require_once(__DIR__ ."/PiPHP/src/Interrupt/InterruptWatcherInterface.php");
+require_once(__DIR__ ."/PiPHP/src/Interrupt/InterruptWatcher.php");
+
 // --------------- Output configuration ---------------
 
 define ("OUTPUTS_NUMBER", 4);
@@ -8,38 +26,38 @@ $outputs = array();
 $outputs[0]["name"] = "Front    ";
 $outputs[0]["baseColor"] = "#FFD800";
 $outputs[0]["borderColor"] = "#E5BF00";
-$outputs[0]["relayPin"] = 8;
-$outputs[0]["ledPin"] = 2;
-$outputs[0]["manualOnPin"] = 15;
-$outputs[0]["manualOffPin"] = 16;
+$outputs[0]["relayPin"] = 2;
+$outputs[0]["ledPin"] = 27;
+$outputs[0]["manualOnPin"] = 14;
+$outputs[0]["manualOffPin"] = 15;
 
 $outputs[1]["name"] = "Left";
 $outputs[1]["baseColor"] = "#FF0000";
 $outputs[1]["borderColor"] = "#E00000";
-$outputs[1]["relayPin"] = 9;
-$outputs[1]["ledPin"] = 3;
-$outputs[1]["manualOnPin"] = 1;
-$outputs[1]["manualOffPin"] = 4;
+$outputs[1]["relayPin"] = 3;
+$outputs[1]["ledPin"] = 22;
+$outputs[1]["manualOnPin"] = 18;
+$outputs[1]["manualOffPin"] = 23;
 
 $outputs[2]["name"] = "Right";
 $outputs[2]["baseColor"] = "#00FF21";
 $outputs[2]["borderColor"] = "#00E21A";
-$outputs[2]["relayPin"] = 7;
-$outputs[2]["ledPin"] = 12;
-$outputs[2]["manualOnPin"] = 5;
-$outputs[2]["manualOffPin"] = 6;
+$outputs[2]["relayPin"] = 4;
+$outputs[2]["ledPin"] = 10;
+$outputs[2]["manualOnPin"] = 24;
+$outputs[2]["manualOffPin"] = 25;
 
 $outputs[3]["name"] = "Rear";
 $outputs[3]["baseColor"] = "#005DFF";
 $outputs[3]["borderColor"] = "#0049C9";
-$outputs[3]["relayPin"] = 0;
-$outputs[3]["ledPin"] = 13;
-$outputs[3]["manualOnPin"] = 10;
-$outputs[3]["manualOffPin"] = 11;
+$outputs[3]["relayPin"] = 17;
+$outputs[3]["ledPin"] = 9;
+$outputs[3]["manualOnPin"] = 8;
+$outputs[3]["manualOffPin"] = 7;
 
 // --------------- Rain sensor configuration ---------------
 
-define("RAINSENSOR_PIN", 20);
+define("RAINSENSOR_PIN", 21);
 
 
 // --------------- Timestamp and logging configuration ---------------
@@ -148,27 +166,41 @@ function DBexec($handler, $sql) {
 
 function togglePin($relay_pin, $led_pin, $new_status) {
 	
+	// GPIO object
+	$gpio = new GPIO();
+	
 	// set the pin direction as OUT
+	$relay_pin_object = $gpio->getOutputPin($relay_pin);
+	$led_pin_object = $gpio->getOutputPin($led_pin);
+	
+	// toggle pin status
+	if($new_status == 1) {
+		$relay_pin_object->setValue(PinInterface::VALUE_HIGH);
+		$led_pin_object->setValue(PinInterface::VALUE_HIGH);
+	else {
+		$relay_pin_object->setValue(PinInterface::VALUE_LOW);
+		$led_pin_object->setValue(PinInterface::VALUE_LOW);		
+	}
+
+	/*// set the pin direction as OUT
 	exec("/usr/bin/gpio mode $relay_pin out");
 	exec("/usr/bin/gpio mode $led_pin out");
 	
 	// toggle pin status
 	exec("/usr/bin/gpio write $relay_pin $new_status");
-	exec("/usr/bin/gpio write $led_pin $new_status");
+	exec("/usr/bin/gpio write $led_pin $new_status");*/
 	
 	return "OK";
 }
 
-function isSwitchOn($switch_pin) {
+function getOutputFromManualPin($pin) {
 	
-	// set the pin direction as INPUT
-	exec("/usr/bin/gpio mode $switch_pin input");
+	for($i = 0; $i < OUTPUTS_NUMBER; $i++) {
 	
-	// get pin status
-	$output = null;
-	exec("/usr/bin/gpio read $switch_pin", $output);
+		if($outputs[$i]["manualOnPin"] == $pin) return [$i, MANUAL_ON];
+		else if if($outputs[$i]["manualOffPin"] == $pin) return [$i, MANUAL_OFF];
+	}
 	
-	if($output[0] == "0") return true;
-	else return false;
+	return [-1,-1];
 }
 ?>

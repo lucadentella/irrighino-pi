@@ -2,31 +2,9 @@
 
 require('include.php');
 
-require_once("/var/www/html/irrighino-pi/php/PiPHP/src/GPIOInterface.php");
-require_once("/var/www/html/irrighino-pi/php/PiPHP/src/GPIO.php");
-
-require_once("/var/www/html/irrighino-pi/php/PiPHP/src/FileSystem/FileSystemInterface.php");
-require_once("/var/www/html/irrighino-pi/php/PiPHP/src/FileSystem/FileSystem.php");
-
-require_once("/var/www/html/irrighino-pi/php/PiPHP/src/Pin/PinInterface.php");
-require_once("/var/www/html/irrighino-pi/php/PiPHP/src/Pin/InputPinInterface.php");
-require_once("/var/www/html/irrighino-pi/php/PiPHP/src/Pin/OutputPinInterface.php");
-require_once("/var/www/html/irrighino-pi/php/PiPHP/src/Pin/Pin.php");
-require_once("/var/www/html/irrighino-pi/php/PiPHP/src/Pin/InputPin.php");
-require_once("/var/www/html/irrighino-pi/php/PiPHP/src/Pin/OutputPin.php");
-
-require_once("/var/www/html/irrighino-pi/php/PiPHP/src/Interrupt/InterruptWatcherInterface.php");
-require_once("/var/www/html/irrighino-pi/php/PiPHP/src/Interrupt/InterruptWatcher.php");
-
 use PiPHP\GPIO\GPIO;
 use PiPHP\GPIO\Pin\PinInterface;
 use PiPHP\GPIO\Pin\InputPinInterface;
-
-function getOutputFromManualPin($pin) {
-	
-	if($pin == 14) return [0, MANUAL_ON];
-	else return [0, MANUAL_OFF];
-}
 
 function setManualOn($output) {
 
@@ -157,19 +135,23 @@ function pinWatcher($pin, $value) {
 
 logMessage("IrrighinoDaemon - Started");
 
-// Create a GPIO object
+// Create a GPIO object and an Interrupt Watcher
 $gpio = new GPIO();
+$interruptWatcher = $gpio->createWatcher();
+
+// create pin object array
+$pins = array();
 
 // Configure pins as input and configure the interrupt events
-$pin14 = $gpio->getInputPin(14);
-$pin15 = $gpio->getInputPin(15);
-$pin14->setEdge(InputPinInterface::EDGE_BOTH);
-$pin15->setEdge(InputPinInterface::EDGE_BOTH);
-
-// Attach the interrupt watcher
-$interruptWatcher = $gpio->createWatcher();
-$interruptWatcher->register($pin14, 'pinWatcher');
-$interruptWatcher->register($pin15, 'pinWatcher');
+for($i = 0; $i < OUTPUTS_NUMBER; $i++) {
+	
+	$pin = $gpio->getInputPin($outputs[$i]["manualOnPin"]);
+	$pin->setEdge(InputPinInterface::EDGE_BOTH);
+	$interruptWatcher->register($pin, 'pinWatcher');
+	$pin = $gpio->getInputPin($outputs[$i]["manualOffPin"]);
+	$pin->setEdge(InputPinInterface::EDGE_BOTH);
+	$interruptWatcher->register($pin, 'pinWatcher');	
+}
 
 logMessage("IrrighinoDaemon - Pin configuration complete, starting watcher...");
 
