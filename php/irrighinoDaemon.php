@@ -129,7 +129,7 @@ function setAuto($output) {
 function pinWatcher($pin, $value) {
 
 	// get output and action based on the pin
-	[$output, $action] = getOutputFromManualPin($pin);
+	[$output, $action] = getOutputFromManualPin($pin->getNumber());
 
 	// switch in manual position
 	if($value == 0) {
