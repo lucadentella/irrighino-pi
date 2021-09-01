@@ -2,21 +2,21 @@
 
 require('include.php');
 
-require_once("/var/www/html/irrighino-pi/PiPHP/src/GPIOInterface.php");
-require_once("/var/www/html/irrighino-pi/PiPHP/src/GPIO.php");
+require_once("/var/www/html/irrighino-pi/php/PiPHP/src/GPIOInterface.php");
+require_once("/var/www/html/irrighino-pi/php/PiPHP/src/GPIO.php");
 
-require_once("/var/www/html/irrighino-pi/PiPHP/src/FileSystem/FileSystemInterface.php");
-require_once("/var/www/html/irrighino-pi/PiPHP/src/FileSystem/FileSystem.php");
+require_once("/var/www/html/irrighino-pi/php/PiPHP/src/FileSystem/FileSystemInterface.php");
+require_once("/var/www/html/irrighino-pi/php/PiPHP/src/FileSystem/FileSystem.php");
 
-require_once("/var/www/html/irrighino-pi/PiPHP/src/Pin/PinInterface.php");
-require_once("/var/www/html/irrighino-pi/PiPHP/src/Pin/InputPinInterface.php");
-require_once("/var/www/html/irrighino-pi/PiPHP/src/Pin/OutputPinInterface.php");
-require_once("/var/www/html/irrighino-pi/PiPHP/src/Pin/Pin.php");
-require_once("/var/www/html/irrighino-pi/PiPHP/src/Pin/InputPin.php");
-require_once("/var/www/html/irrighino-pi/PiPHP/src/Pin/OutputPin.php");
+require_once("/var/www/html/irrighino-pi/php/PiPHP/src/Pin/PinInterface.php");
+require_once("/var/www/html/irrighino-pi/php/PiPHP/src/Pin/InputPinInterface.php");
+require_once("/var/www/html/irrighino-pi/php/PiPHP/src/Pin/OutputPinInterface.php");
+require_once("/var/www/html/irrighino-pi/php/PiPHP/src/Pin/Pin.php");
+require_once("/var/www/html/irrighino-pi/php/PiPHP/src/Pin/InputPin.php");
+require_once("/var/www/html/irrighino-pi/php/PiPHP/src/Pin/OutputPin.php");
 
-require_once("/var/www/html/irrighino-pi/PiPHP/src/Interrupt/InterruptWatcherInterface.php");
-require_once("/var/www/html/irrighino-pi/PiPHP/src/Interrupt/InterruptWatcher.php");
+require_once("/var/www/html/irrighino-pi/php/PiPHP/src/Interrupt/InterruptWatcherInterface.php");
+require_once("/var/www/html/irrighino-pi/php/PiPHP/src/Interrupt/InterruptWatcher.php");
 
 use PiPHP\GPIO\GPIO;
 use PiPHP\GPIO\Pin\PinInterface;
