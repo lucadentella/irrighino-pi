@@ -154,6 +154,9 @@ function rainsensorWatcher($pin, $value) {
 				$out_id = intval($row['OUT_ID']);
 				$out_status = intval($row['OUT_STATUS']);
 				
+				// check only valid outputs
+				if($_out_id >= OUTPUTS_NUMBER) break;
+				
 				// turn them OFF
 				if($out_status == STATUS_ON) {
 					$response = togglePin($outputs[$out_id]["relayPin"], $outputs[$out_id]["ledPin"], 0);
