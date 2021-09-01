@@ -30,6 +30,9 @@ function getOutputFromManualPin($pin) {
 
 function setManualOn($output) {
 
+	// access the global variable with outputs
+	global $outputs;
+
 	// open DB connection
 	$db_handler  = DBconnect();
 
@@ -67,6 +70,9 @@ function setManualOn($output) {
 }
 
 function setManualOff($output) {
+
+	// access the global variable with outputs
+	global $outputs;
 
 	// open DB connection
 	$db_handler  = DBconnect();
