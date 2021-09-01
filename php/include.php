@@ -90,7 +90,7 @@ function logMessage($msg) {
 		
 		$pos = strpos($msg, " - ");
 		if($pos == false) $log_file_name = "irrighino.log.";
-		else $log_file_name = substr($msg, 0, $pos);
+		else $log_file_name = substr($msg, 0, $pos) . ".log.";
 		
 		$msg = "$current_time - $msg";
 		$log_file_descriptor = fopen(LOG_DIR . $log_file_name . $logfile_suffix, "a");
