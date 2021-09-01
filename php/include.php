@@ -196,6 +196,8 @@ function togglePin($relay_pin, $led_pin, $new_status) {
 
 function getOutputFromManualPin($pin) {
 	
+	global $outputs;
+	
 	for($i = 0; $i < OUTPUTS_NUMBER; $i++) {
 	
 		if($outputs[$i]["manualOnPin"] == $pin) return [$i, MANUAL_ON];
