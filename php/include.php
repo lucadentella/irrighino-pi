@@ -87,8 +87,13 @@ function logMessage($msg) {
 		chdir (__DIR__);
 		$logfile_suffix = date("Ymd");
 		$current_time = date("Y-m-d H:i:s");
+		
+		$pos = strpos($msg, " - ");
+		if($pos == false) $log_file_name = "irrighino.log.";
+		else $log_file_name = substr($msg, 0, $pos);
+		
 		$msg = "$current_time - $msg";
-		$log_file_descriptor = fopen(LOG_DIR . "irrighino.log." . $logfile_suffix, "a");
+		$log_file_descriptor = fopen(LOG_DIR . $log_file_name . $logfile_suffix, "a");
 		fwrite($log_file_descriptor, $msg . PHP_EOL);
 		fclose($log_file_descriptor);
 }
