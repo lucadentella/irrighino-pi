@@ -31,8 +31,8 @@ Manual control
 
 Calendar and schedules
 
-![](https://github.com/lucadentella/irrighino-pi/raw/main/images/screen1.png)
+![](https://github.com/lucadentella/irrighino-pi/raw/main/images/screen2.png)
 
 Event log
 
-![](https://github.com/lucadentella/irrighino-pi/raw/main/images/screen1.png)
+![](https://github.com/lucadentella/irrighino-pi/raw/main/images/screen3.png)
