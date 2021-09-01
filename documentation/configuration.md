@@ -32,7 +32,7 @@ In `include.php` physical switches are **enabled** by default:
 
 If physical switches are not connected to irrighino Pi, set the constant to false
 
-    define("ENABLE_RAINSENSOR", false);
+    define ("ENABLE_MANUAL_SWITCHES", false);
 
 ## Rain Sensor :umbrella:
 
