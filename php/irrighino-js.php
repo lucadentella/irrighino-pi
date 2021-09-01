@@ -110,9 +110,9 @@ function init() {
 		}
 	});
 
-	// auto-update the GUI every 5 seconds
+	// auto-update the GUI every 10 seconds
 	updateGUI();
-	setInterval(updateGUI, 5000);
+	setInterval(updateGUI, 10000);
 }
 
 function initWeekCalendar() {
