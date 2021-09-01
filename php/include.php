@@ -199,7 +199,7 @@ function getOutputFromManualPin($pin) {
 	for($i = 0; $i < OUTPUTS_NUMBER; $i++) {
 	
 		if($outputs[$i]["manualOnPin"] == $pin) return [$i, MANUAL_ON];
-		else if if($outputs[$i]["manualOffPin"] == $pin) return [$i, MANUAL_OFF];
+		else if($outputs[$i]["manualOffPin"] == $pin) return [$i, MANUAL_OFF];
 	}
 	
 	return [-1,-1];
