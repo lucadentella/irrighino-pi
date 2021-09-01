@@ -37,19 +37,33 @@ and verify you can see the content
 
 **2. Install the required libraries and modules**
 
-    sudo apt-get install php-sqlite3 php-curl
-    sudo apt-get install sqlite3
-    sudo apt-get install wiringpi
+    sudo apt-get install php-sqlite3 php-curl -y
+    sudo apt-get install sqlite3 -y
+    sudo apt-get install wiringpi -y
 
-**3. Clone the Github repository**
+**3. Enable the modules**
+
+    sudo nano /etc/php/7.3/apache2/php.ini
+	
+Remove the ";" in front of extension=pdo_sqlite
+
+    sudo nano /etc/php/7.3/cli/php.ini
+	
+Remove the ";" in front of extension=pdo_sqlite
+
+    sudo systemctl restart apache2
+
+**4. Clone the Github repository**
 
     cd /var/www/html/
 	sudo git clone https://github.com/lucadentella/irrighino-pi
 
-sudo chmod -R o+w /var/www/html/irrighino-pi/db/
-sudo mkdir /var/www/html/irrighino-pi/logs
-sudo chmod o+w /var/www/html/irrighino-pi/logs
-sudo usermod -a -G www-data pi
-sudo usermod -a -G gpio www-data
+**5. Set the correct permissions**
+
+    sudo chmod -R o+w /var/www/html/irrighino-pi/db/
+    sudo mkdir /var/www/html/irrighino-pi/logs
+    sudo chmod o+w /var/www/html/irrighino-pi/logs
+    sudo usermod -a -G www-data pi
+    sudo usermod -a -G gpio www-data
 
 // modifica in 664 il log quando lo crei da zero
