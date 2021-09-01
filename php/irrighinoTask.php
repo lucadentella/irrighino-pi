@@ -21,6 +21,10 @@
 
 			$out_id = intval($row['OUT_ID']);
 			$out_status = intval($row['OUT_STATUS']);
+			
+			// check only valid outputs
+			if($out_id >= OUTPUTS_NUMBER) break;			
+			
 			logMessage("IrrighinoTask - Checking OUT_ID $out_id now in OUT_STATUS $out_status");	
 			
 			// check if we neeed to change the status

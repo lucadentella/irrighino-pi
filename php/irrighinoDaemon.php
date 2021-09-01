@@ -199,6 +199,9 @@ function rainsensorWatcher($pin, $value) {
 				$out_id = intval($row['OUT_ID']);
 				$out_status = intval($row['OUT_STATUS']);				
 				
+				// check only valid outputs
+				if($out_id >= OUTPUTS_NUMBER) break;				
+				
 				$sql = "UPDATE OUTPUTS SET MANAGED_BY = " . MANAGED_BY_AUTO . " WHERE OUT_ID = $out_id";
 				DBexec($db_handler, $sql);
 				logEvent($db_handler, TYPE_CFG_CHANGE, "Output $out_id set managed by AUTO by rainsensor");
