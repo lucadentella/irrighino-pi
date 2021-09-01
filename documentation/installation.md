@@ -64,8 +64,8 @@ Add the following lines:
 
 Connect to [http://raspberrypi.local/irrighino-pi/](http://raspberrypi.local/irrighino-pi/)
 
-![](https://github.com/lucadentella/irrighino-pi/raw/main/images/phpinfo.png)
+![](https://github.com/lucadentella/irrighino-pi/raw/main/images/testgui.png)
 
 **8. Configure and Use**
 
-Now that irrighino Pi is up and running, you can customize it (see [Configuration](https://github.com/lucadentella/irrighino-pi/tree/main/documentation/configuration.md) or start planning your schedules (see [User Manual](https://github.com/lucadentella/irrighino-pi/tree/main/documentation/usermanual.md))
+Now that irrighino Pi is up and running, you can customize it (see [Configuration](https://github.com/lucadentella/irrighino-pi/tree/main/documentation/configuration.md)) or start planning your schedules (see [User Manual](https://github.com/lucadentella/irrighino-pi/tree/main/documentation/usermanual.md))
