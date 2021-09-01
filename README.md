@@ -12,6 +12,7 @@ Smart watering controller based on Raspberry Pi.
 
  - **Web-based** GUI
  - **Weekly** calendar with **2 minutes** resolution
+ - Up to **8** independent **outputs**
  - **Manual** control of each valve (via GUI or physical switches)
 
 ## How to install :notebook:
