@@ -49,6 +49,7 @@ function setManualOn($output) {
 			$sql = "UPDATE OUTPUTS SET OUT_STATUS = " . STATUS_ON . " WHERE OUT_ID = $output";
 			DBexec($db_handler, $sql);
 			logEvent($db_handler, TYPE_OUT_ON, "Output $output turned ON by switch");
+			logMessage("IrrighinoDaemon - Output $output turned ON");
 		}
 	}
 	
@@ -62,7 +63,8 @@ function setManualOn($output) {
 	if($managed_by != MANAGED_BY_SWITCH) {
 		$sql = "UPDATE OUTPUTS SET MANAGED_BY = " . MANAGED_BY_SWITCH . " WHERE OUT_ID = $output";
 		DBexec($db_handler, $sql);
-		logEvent($db_handler, TYPE_CFG_CHANGE, "Output $output set managed by switch");
+		logEvent($db_handler, TYPE_CFG_CHANGE, "Output $output set managed by MANUAL via switch");
+		logMessage("IrrighinoDaemon - Output $output set managed by MANUAL");
 	}					
 	
 	// close DB connection
@@ -83,13 +85,14 @@ function setManualOff($output) {
 	$row = $data_set->fetch();
 	$out_status = intval($row['OUT_STATUS']);
 	
-	// if not, turn it ON and update the DB
+	// if not, turn it OFF and update the DB
 	if($out_status == STATUS_ON) {
 		$response = togglePin($outputs[$output]["relayPin"], $outputs[$output]["ledPin"], 0);
 		if(strpos($response, "OK") !== false) {
 			$sql = "UPDATE OUTPUTS SET OUT_STATUS = " . STATUS_OFF . " WHERE OUT_ID = $output";
 			DBexec($db_handler, $sql);
 			logEvent($db_handler, TYPE_OUT_OFF, "Output $output turned OFF by switch");
+			logMessage("IrrighinoDaemon - Output $output turned OFF");
 		}
 	}
 	
@@ -103,7 +106,8 @@ function setManualOff($output) {
 	if($managed_by != MANAGED_BY_SWITCH) {
 		$sql = "UPDATE OUTPUTS SET MANAGED_BY = " . MANAGED_BY_SWITCH . " WHERE OUT_ID = $output";
 		DBexec($db_handler, $sql);
-		logEvent($db_handler, TYPE_CFG_CHANGE, "Output $output set managed by switch");
+		logEvent($db_handler, TYPE_CFG_CHANGE, "Output $output set managed by MANUAL via switch");
+		logMessage("IrrighinoDaemon - Output $output set managed by MANUAL");
 	}
 
 	// close DB connection
@@ -125,7 +129,8 @@ function setAuto($output) {
 	if($managed_by != MANAGED_BY_AUTO) {
 		$sql = "UPDATE OUTPUTS SET MANAGED_BY = " . MANAGED_BY_AUTO . " WHERE OUT_ID = $output";
 		DBexec($db_handler, $sql);
-		logEvent($db_handler, TYPE_CFG_CHANGE, "Output $output set managed by auto via switch");
+		logEvent($db_handler, TYPE_CFG_CHANGE, "Output $output set managed by AUTO via switch");
+		logMessage("IrrighinoDaemon - Output $output set managed by AUTO");
 	}
 
 	// close DB connection
@@ -133,6 +138,8 @@ function setAuto($output) {
 }
 
 function pinWatcher($pin, $value) {
+
+	logMessage("IrrighinoDaemon - New event detected on pin " . $pin->getNumber());
 
 	// get output and action based on the pin
 	[$output, $action] = getOutputFromManualPin($pin->getNumber());
