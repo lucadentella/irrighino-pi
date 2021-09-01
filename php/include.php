@@ -18,6 +18,9 @@ require_once(__DIR__ ."/PiPHP/src/Pin/OutputPin.php");
 require_once(__DIR__ ."/PiPHP/src/Interrupt/InterruptWatcherInterface.php");
 require_once(__DIR__ ."/PiPHP/src/Interrupt/InterruptWatcher.php");
 
+use PiPHP\GPIO\GPIO;
+use PiPHP\GPIO\Pin\PinInterface;
+
 // --------------- Output configuration ---------------
 
 define ("OUTPUTS_NUMBER", 4);
