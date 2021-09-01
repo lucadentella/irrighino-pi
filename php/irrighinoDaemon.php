@@ -135,6 +135,9 @@ function pinWatcher($pin, $value) {
 
 function rainsensorWatcher($pin, $value) {
 
+	// access the global variable with outputs
+	global $outputs;
+
 	logMessage("IrrighinoDaemon - New event detected for rainsensor");
 
 	// rainsensor on
