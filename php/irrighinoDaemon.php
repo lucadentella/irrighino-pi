@@ -161,15 +161,15 @@ function rainsensorWatcher($pin, $value) {
 						$sql = "UPDATE OUTPUTS SET OUT_STATUS = " . STATUS_OFF . " WHERE OUT_ID = $out_id";
 						DBexec($db_handler, $sql);					
 						logEvent($db_handler, TYPE_OUT_OFF, "Output $out_id turned OFF by rainsensor");
-						logMessage("IrrighinoDaemon - Output $output turned OFF by rainsensor");
+						logMessage("IrrighinoDaemon - Output $out_id turned OFF by rainsensor");
 					}					
 				}
 				
 				// set all MANAGED_BY_RAINSENSOR
 				$sql = "UPDATE OUTPUTS SET MANAGED_BY = " . MANAGED_BY_RAINSENSOR . " WHERE OUT_ID = $out_id";
 				DBexec($db_handler, $sql);
-				logEvent($db_handler, TYPE_CFG_CHANGE, "Output $output set managed by RAINSENSOR");
-				logMessage("IrrighinoDaemon - Output $output set managed by RAINSENSOR");
+				logEvent($db_handler, TYPE_CFG_CHANGE, "Output $out_id set managed by RAINSENSOR");
+				logMessage("IrrighinoDaemon - Output $out_id set managed by RAINSENSOR");
 			}
 		}
 		
@@ -192,10 +192,14 @@ function rainsensorWatcher($pin, $value) {
 		if($data_set) {
 		
 			foreach($data_set as $row) {
+
+				$out_id = intval($row['OUT_ID']);
+				$out_status = intval($row['OUT_STATUS']);				
+				
 				$sql = "UPDATE OUTPUTS SET MANAGED_BY = " . MANAGED_BY_AUTO . " WHERE OUT_ID = $out_id";
 				DBexec($db_handler, $sql);
-				logEvent($db_handler, TYPE_CFG_CHANGE, "Output $output set managed by AUTO by rainsensor");
-				logMessage("IrrighinoDaemon - Output $output set managed by AUTO by rainsensor");
+				logEvent($db_handler, TYPE_CFG_CHANGE, "Output $out_id set managed by AUTO by rainsensor");
+				logMessage("IrrighinoDaemon - Output $out_id set managed by AUTO by rainsensor");
 			}
 		}
 	}
