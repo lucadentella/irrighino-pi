@@ -72,6 +72,8 @@ Remove the ";" in front of extension=pdo_sqlite
 
 Add the following lines:
 
+	@reboot sleep 120 && /usr/bin/php /var/www/html/irrighino-pi/php/irrighinoDaemon.php >/dev/null 2>&1
 	* * * * * /usr/bin/php /var/www/html/irrighino-pi/php/irrighinoTask.php >/dev/null 2>&1
 	2 0 * * * /var/www/html/irrighino-pi/php/purgeOldLogs.php >/dev/null 2>&1
 	5 0 * * * /usr/bin/php /var/www/html/irrighino-pi/php/purgeOldEvents.php >/dev/null 2>&1
+	
