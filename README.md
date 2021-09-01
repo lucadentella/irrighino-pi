@@ -18,7 +18,7 @@ Smart watering controller based on Raspberry Pi.
 
 ## Documentation :notebook:
 
- - [Hardware Setup](https://github.com/lucadentella/espThrottle/tree/main/documentation/hwsetup.md)
+ - [Hardware Setup](https://github.com/lucadentella/irrighino-pi/tree/main/documentation/hwsetup.md)
  - [Installation](https://github.com/lucadentella/irrighino-pi/tree/main/documentation/installation.md)
  - [Configuration](https://github.com/lucadentella/irrighino-pi/tree/main/documentation/configuration.md)
  - [User Manual](https://github.com/lucadentella/irrighino-pi/tree/main/documentation/usermanual.md)
