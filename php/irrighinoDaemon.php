@@ -133,6 +133,23 @@ function pinWatcher($pin, $value) {
 	else setAuto($output);
 }
 
+function rainsensorWatcher($pin, $value) {
+
+	logMessage("IrrighinoDaemon - New event detected for rainsensor");
+
+	// rainsensor on
+	if($value == 0) {
+		
+		if($action == MANUAL_ON) setManualOn($output);
+		else setManualOff($output);
+	}
+	
+	// rainsensor off
+	else {
+		
+	}
+}
+
 logMessage("IrrighinoDaemon - Started");
 
 // Create a GPIO object and an Interrupt Watcher
@@ -143,17 +160,36 @@ $interruptWatcher = $gpio->createWatcher();
 $pins = array();
 
 // Configure pins as input and configure the interrupt events
-for($i = 0; $i < OUTPUTS_NUMBER; $i++) {
+if(ENABLE_MANUAL_SWITCHES == true) {
+
+	logMessage("IrrighinoDaemon - Manual switches are enabled, configuring the corresponding pins...");
+
+	for($i = 0; $i < OUTPUTS_NUMBER; $i++) {
+		
+		$pin = $gpio->getInputPin($outputs[$i]["manualOnPin"]);
+		$pin->setEdge(InputPinInterface::EDGE_BOTH);
+		$interruptWatcher->register($pin, 'pinWatcher');
+		$pin = $gpio->getInputPin($outputs[$i]["manualOffPin"]);
+		$pin->setEdge(InputPinInterface::EDGE_BOTH);
+		$interruptWatcher->register($pin, 'pinWatcher');	
+	}
 	
-	$pin = $gpio->getInputPin($outputs[$i]["manualOnPin"]);
-	$pin->setEdge(InputPinInterface::EDGE_BOTH);
-	$interruptWatcher->register($pin, 'pinWatcher');
-	$pin = $gpio->getInputPin($outputs[$i]["manualOffPin"]);
-	$pin->setEdge(InputPinInterface::EDGE_BOTH);
-	$interruptWatcher->register($pin, 'pinWatcher');	
+	logMessage("IrrighinoDaemon - Pins configuration complete");
 }
 
-logMessage("IrrighinoDaemon - Pin configuration complete, starting watcher...");
+// Configure rainsensor pin
+if(ENABLE_RAINSENSOR == true) {
+
+	logMessage("IrrighinoDaemon - Rainsensor is enabled, configuring the corresponding pin...");
+	
+	$pin = $gpio->getInputPin(RAINSENSOR_PIN);
+	$pin->setEdge(InputPinInterface::EDGE_BOTH);
+	$interruptWatcher->register($pin, 'rainsensorWatcher');
+	
+	logMessage("IrrighinoDaemon - Pin configuration complete");
+}
+
+logMessage("IrrighinoDaemon - Starting watcher...");
 
 // Start the watcher
 while ($interruptWatcher->watch(1000));

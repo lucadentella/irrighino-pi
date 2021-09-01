@@ -24,6 +24,7 @@ use PiPHP\GPIO\Pin\PinInterface;
 // --------------- Output configuration ---------------
 
 define ("OUTPUTS_NUMBER", 4);
+define ("ENABLE_MANUAL_SWITCHES", true);
 
 $outputs = array();
 $outputs[0]["name"] = "Front    ";
@@ -60,6 +61,7 @@ $outputs[3]["manualOffPin"] = 7;
 
 // --------------- Rain sensor configuration ---------------
 
+define("ENABLE_RAINSENSOR", true);
 define("RAINSENSOR_PIN", 21);
 
 
