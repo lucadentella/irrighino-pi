@@ -39,7 +39,6 @@ and verify you can see the content
 
     sudo apt-get install php-sqlite3 php-curl -y
     sudo apt-get install sqlite3 -y
-    sudo apt-get install wiringpi -y
 
 **3. Enable the modules**
 
