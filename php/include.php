@@ -72,6 +72,9 @@ define ("MANAGED_BY_AUTO", 2);
 define ("STATUS_OFF", 0);
 define ("STATUS_ON", 1);
 
+define ("MANUAL_ON", 0);
+define ("MANUAL_OFF", 1);
+
 // --------------- Logging functions ---------------
 
 function logEvent($db_handler, $eventType, $message) {
