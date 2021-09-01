@@ -155,7 +155,7 @@ function rainsensorWatcher($pin, $value) {
 				$out_status = intval($row['OUT_STATUS']);
 				
 				// check only valid outputs
-				if($_out_id >= OUTPUTS_NUMBER) break;
+				if($out_id >= OUTPUTS_NUMBER) break;
 				
 				// turn them OFF
 				if($out_status == STATUS_ON) {
