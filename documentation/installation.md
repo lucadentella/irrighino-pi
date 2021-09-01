@@ -59,3 +59,13 @@ Add the following lines:
 	* * * * * /usr/bin/php /var/www/html/irrighino-pi/php/irrighinoTask.php >/dev/null 2>&1
 	2 0 * * * /var/www/html/irrighino-pi/php/purgeOldLogs.php >/dev/null 2>&1
 	5 0 * * * /usr/bin/php /var/www/html/irrighino-pi/php/purgeOldEvents.php >/dev/null 2>&1
+
+**7. Test**
+
+Connect to [http://raspberrypi.local/irrighino-pi/](http://raspberrypi.local/irrighino-pi/)
+
+![](https://github.com/lucadentella/irrighino-pi/raw/main/images/phpinfo.png)
+
+**8. Configure and Use**
+
+Now that irrighino Pi is up and running, you can customize it (see [Configuration](https://github.com/lucadentella/irrighino-pi/tree/main/documentation/configuration.md) or start planning your schedules (see [User Manual](https://github.com/lucadentella/irrighino-pi/tree/main/documentation/usermanual.md))
