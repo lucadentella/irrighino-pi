@@ -66,4 +66,12 @@ Remove the ";" in front of extension=pdo_sqlite
     sudo usermod -a -G www-data pi
     sudo usermod -a -G gpio www-data
 
-// modifica in 664 il log quando lo crei da zero
+**6. Add crontab schedules**
+
+    crontab -e
+
+Add the following lines:
+
+	* * * * * /usr/bin/php /var/www/html/irrighino-pi/php/irrighinoTask.php >/dev/null 2>&1
+	2 0 * * * /var/www/html/irrighino-pi/php/purgeOldLogs.php >/dev/null 2>&1
+	5 0 * * * /usr/bin/php /var/www/html/irrighino-pi/php/purgeOldEvents.php >/dev/null 2>&1
