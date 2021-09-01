@@ -91,6 +91,7 @@ define ("TYPE_ERROR", 6);
 define ("MANAGED_BY_SWITCH", 0);
 define ("MANAGED_BY_WEB", 1);
 define ("MANAGED_BY_AUTO", 2);
+define ("MANAGED_BY_RAINSENSOR", 3);
 
 define ("STATUS_OFF", 0);
 define ("STATUS_ON", 1);
