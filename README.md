@@ -22,3 +22,17 @@ Smart watering controller based on Raspberry Pi.
  - [Installation](https://github.com/lucadentella/irrighino-pi/tree/main/documentation/installation.md)
  - [Configuration](https://github.com/lucadentella/irrighino-pi/tree/main/documentation/configuration.md)
  - [User Manual](https://github.com/lucadentella/irrighino-pi/tree/main/documentation/usermanual.md)
+
+## Screenshots :tv:
+
+Manual control
+
+![](https://github.com/lucadentella/irrighino-pi/raw/main/images/screen1.png)
+
+Calendar and schedules
+
+![](https://github.com/lucadentella/irrighino-pi/raw/main/images/screen1.png)
+
+Event log
+
+![](https://github.com/lucadentella/irrighino-pi/raw/main/images/screen1.png)
